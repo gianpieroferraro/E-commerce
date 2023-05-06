@@ -1,0 +1,170 @@
+<?php 
+	include("database.php");
+
+	include("head.php");
+	include("menu.php");
+	include("side_bar.php");
+	
+	$query = $con->query("SELECT * FROM articoli;");
+?>
+	<div id="grid_right_insart">
+		
+			<span style="position: relative;">
+				<?php
+					$id_art = $_GET['id'];
+					$sql = $con->query("SELECT * FROM (articoli INNER JOIN marca ON articoli.id_marca = marca.id_mar) INNER JOIN categorie ON articoli.id_categoria = categorie.id 
+					INNER JOIN distr ON articoli.id_distr = distr.id WHERE id_art=" .$id_art);
+					$row = $sql->fetch_assoc(); 
+					
+					
+					
+				
+					$nome = "";
+					$marca = 0;
+					$tipo = 0;
+					$taglia = "";
+					$pezzi = 0;
+					$prezzo= 0;
+					$distr = 0;
+					$target_file = "";
+					if(isset($_POST['nome'])) {$nome = $_POST['nome'];}
+					if(isset($_POST['marca'])) {$marca = $_POST['marca'];}
+					if(isset($_POST['tipo'])) {$tipo = $_POST['tipo'];}
+					if(isset($_POST['taglia'])) {$taglia = $_POST['taglia'];}
+					if(isset($_POST['pezzi'])) {$pezzi = $_POST['pezzi'];}
+					if(isset($_POST['prezzo'])) {$prezzo = $_POST['prezzo'];}
+					if(isset($_POST['distr'])) {$distr = $_POST['distr'];}
+					if(isset($_POST['submit'])) {
+						$target_dir = "./shop/admin/art_img/scarpe/";
+						$target_file = $target_dir . basename($_FILES["file_to_upload"]["name"]);
+						
+						$upoad_ok = 1;
+						$image_file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+					
+						$check = getimagesize($_FILES['file_to_upload']['tmp_name']);
+						if($check !== false) {
+							echo "Il file è un'immagine - " . $check["mime"] . ".";
+							$upload_ok  = 1;
+						} else {
+							echo "Il file non è un'immagine.";
+							$upload_ok = 0;
+						}
+						
+						if($upload_ok == 0) {
+							echo "Errore di caricamento, riprova.";
+						}else {
+							if(move_uploaded_file($_FILES['file_to_upload']['tmp_name'], $target_file)) {
+								echo "Il file " . htmlspecialchars(basename($_FILES['file_to_upload']['name'])) . " E' stato caricato.";
+								
+							}else {
+								echo "Ci scusiamo, è stato riscontrato un errore duranete il caricamento.";
+							}
+						}
+					}
+					
+					$qry = ("UPDATE articoli SET nome = '".$nome."', prezzo = '".$prezzo."', pezzi= '".$pezzi."', taglia= '".$taglia."',
+					id_marca= '".$marca."', id_categoria= '".$tipo."', id_distr= '".$distr."', immagine= '".$target_file."' WHERE id_art=" . $id_art);
+					
+					?><div class="divInserMex"><?php
+						if($_SERVER['REQUEST_METHOD'] === "POST") {
+							if($con->query($qry) === true) {
+								echo "Dati modificati correttamente";
+								
+								?>
+								<script>
+									let tID = setTimeout(function() {
+										window.location.href = "gestione_art.php"
+										window.clearTimeout(tID)
+									},2000)
+								</script>
+								<?php
+							}else {
+								echo "Errore di connessione" . $con->error;
+							}
+						}
+						
+						$marResult = $con->query("SELECT * FROM marca");
+						$catResult = $con->query("SELECT * FROM categorie");
+						$distrResult = $con->query("SELECT * FROM distr");
+						
+						
+				?></div>
+				
+				<span class="brid">
+					<a onclick="location.href='gestione_art.php'">Gestione articoli</a>/<b>Modifica <?php echo $row['nome']; ?></b>
+				</span>
+				<form class="formInser" name="insArt" action="edit_art.php?id=<?php echo $id_art?>" method="POST" enctype="multipart/form-data">
+					<div  class="table_art_ins">
+						<table>
+							<tbody>
+								<tr>
+									<th scope="col">Nome Articolo</th>	
+									<td><input class="inserInput" type="text" name="nome" value="<?php echo $row['nome']; ?>"></td>
+								</tr>
+								<tr>
+									<th scope="col">Marca</th>	
+									<td><select class="inserInput" name="marca">
+											<?php while($p = mysqli_fetch_assoc($marResult)) {
+												if($p['nome_marca'] == $row['nome_marca']) {
+													$selected = 'SELECTED';
+												}else {
+													$selected = '';
+												}
+												echo "<option ".$selected." value='".$p['id_mar']."'>".$p['nome_marca']."</option>";
+											} ?>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th scope="col">Tipologia</th>	
+									<td><select class="inserInput" name="tipo">
+											<?php while($p = mysqli_fetch_assoc($catResult)) {
+												if($p['tipo'] == $row['tipo']) {
+													$selected = 'SELECTED';
+												}else {
+													$selected = '';
+												}
+												echo "<option ".$selected." value='".$p['id']."'>".$p['tipo']."</option>";
+											}?>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th scope="col">Taglia</th>	
+									<td><input class="inserInput" type="text" name="taglia" value="<?php echo $row['taglia']; ?>"></td>
+								</tr>
+								<tr>
+									<th scope="col">Pezzi</th>	
+									<td><input class="inserInput" type="number" name="pezzi" value="<?php echo $row['pezzi']; ?>"></td>
+								</tr>
+								<tr>
+									<th scope="col">Prezzo</th>	
+									<td><input class="inserInput" type="number" name="prezzo"value="<?php echo $row['prezzo']; ?>"></td>
+								</tr>
+								<tr>
+									<th scope="col">Distributore</th>	
+									<td><select class="inserInput" name="distr">
+											<?php while($p = mysqli_fetch_assoc($distrResult)) {
+												if($p['nome_distr'] == $row['nome_distr']) {
+													$selected = 'SELECTED';
+												}else {
+													$selected = '';
+												}
+												echo "<option ".$selected." value='".$p['id']."'>".$p['nome_distr']."</option>";
+											} ?>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th scope="col">Immagine</th>	
+									<td><input class="choose_file" type="file" name="file_to_upload"></td>
+								</tr>
+							</tbody>
+						</table>	
+					</div>	
+					<input class="inpConf" type="submit" name="submit" value="Conferma">
+				</form>
+			</span>
+		
+	</div>	
+<?php include("footer.php"); ?>

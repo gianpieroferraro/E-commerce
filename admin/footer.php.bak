@@ -1,0 +1,24 @@
+		</div>
+		<footer class="coloreBase"> 											 
+			<p>Copyright 2022 - <b>Gianpiero Ferraro</b></p>
+		</footer>
+		
+		<script>
+			const submenu = document.querySelector(".sub_menu")
+			
+			document.querySelector("#user_but, submenu").addEventListener("mouseover", function() {
+				submenu.classList.remove("hidden")
+				document.querySelector("#user_but").style.backgroundColor = "#fff";
+				document.querySelector("#user_but").style.color = "#247e8c";
+				
+			})
+			
+			document.querySelector("#user_but, submenu").addEventListener("click", function() {
+				submenu.classList.add("hidden")
+				
+			})
+			
+			
+		</script>
+	</body>
+</html>

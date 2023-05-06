@@ -1,0 +1,10 @@
+	<header class="coloreBase">
+		<a href="./index.php" rel="nofollow" target="blank"><img src="images/logo_foferys.png"></a>
+		<nav id="navMenu">
+			<ul>
+				<li><a class="home" href="">Profilo</a></li>
+				<li><a href="" target="blank">Info</a></li>
+			</ul>
+		</nav>
+	</header><br><br><br>
+	<div class="container">

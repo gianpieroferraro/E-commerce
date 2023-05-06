@@ -1,0 +1,42 @@
+	const container = document.querySelector(".containForm"),
+		pwShowHide = document.querySelectorAll(".showHidePw"),
+		pwFields = document.querySelectorAll(".password");
+	const register = document.querySelector(".reg_link")
+	const log = document.querySelector(".log_link")
+
+	pwShowHide.forEach(eyeIcon =>{
+		eyeIcon.addEventListener("click", function() {
+			pwFields.forEach(pwField =>{
+				if(pwField.type === "password") {
+					pwField.type = "text"
+					
+					pwShowHide.forEach(icon =>{
+						icon.classList.replace("uil-eye-slash", "uil-eye")
+					})
+				}else {
+					pwField.type = "password"
+					
+					pwShowHide.forEach(icon =>{
+						icon.classList.replace("uil-eye", "uil-eye-slash")
+					})
+				}
+			})
+		})
+	})                          
+	
+	log.addEventListener("click", function() {
+		add_remove("login")
+	})
+	register.addEventListener("click", function() {
+		add_remove("registration")
+	})
+	
+	function add_remove(class_type) {
+		if (class_type == "registration") {
+			document.querySelector(".log_in").classList.add("hidden")
+			document.querySelector(".registration").classList.remove("hidden")
+		}else if(class_type == "login") {
+			document.querySelector(".registration").classList.add("hidden")
+			document.querySelector(".log_in").classList.remove("hidden")
+		}
+	}

@@ -1,0 +1,34 @@
+<?php 
+	include("database.php");
+	include("front_head.php");
+	include("front_menu.php");
+	
+	
+	
+?>
+	<div id="hero" >
+			<h4>Collezione Moda 2022</h4>
+			<h2>Offerte super vantaggiose</h2>
+			<h1>Sulla maggior parte dei prodotti</h1>
+			<p>Risparmia di più con i coupons, fino al 70% di sconto!</p>
+			<button>Acquista ora</button>
+	</div>	
+	<?php 
+		$sql = "SELECT * FROM categorie WHERE id_padre IS NULL";
+		$result = mysqli_query($con, $sql);
+		
+	?>
+	<section id="feature" class="sectionP1">
+	<?php	
+		while($row = $result->fetch_assoc()){
+	?>
+		<div class="imgContainer"><a href="/shop/elem_categ.php?id_cat=<?php echo $row['id']?>&tipo=<?php echo $row['tipo']?>">
+			<img src="/shop/admin/<?php echo $row['img_link']; ?>">
+			<h2><?php echo $row['tipo']; ?></h2>
+		</div>
+	<?php	
+		}
+	?>
+	</section>
+	
+<?php include("front_footer.php"); ?>

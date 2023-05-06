@@ -1,0 +1,74 @@
+<?php 
+	include("database.php");
+
+	include("head.php");
+	include("menu.php");
+	include("side_bar.php");
+	
+	$query = $con->query("SELECT * FROM operatori");
+?>
+	<div id="grid_right_insart">
+		
+			<span style="position: relative;">
+				<?php
+					$nome = "";
+					$cognome = "";
+					$tel = "";
+					$email = "";
+					$distr = 0;
+					if(isset($_POST['nome'])) {$nome = $_POST['nome'];}
+					if(isset($_POST['cognome'])) {$cognome = $_POST['cognome'];}
+					if(isset($_POST['tel'])) {$tel = $_POST['tel'];}
+					if(isset($_POST['email'])) {$email = $_POST['email'];}
+					if(isset($_POST['distr'])) {$distr = $_POST['distr'];}
+					
+					$sql = "INSERT INTO operatori (nome_oper, cognome_oper, tel_oper, email_oper, id_distr) VALUE ('$nome', '$cognome ', '$tel', '$email', '$distr');";
+					
+					?><div class="divInserMex"><?php
+						if($_SERVER['REQUEST_METHOD'] === "POST") {
+							if($con->query($sql) === true) {
+								echo "Dati inseriti correttamente";
+							}else {
+								echo "Errore di connessione" . $con->error;
+							}
+						}	
+						$distrResult = $con->query("SELECT * FROM distr");
+					?></div>
+				
+				<span class="brid">
+					<a onclick="location.href='gest_fornitori.php'">Gestione Fornitori</a>/<b>Inserisci Fornitore</b>
+				</span>
+				<form class="formInser" name="insFor" action="insert_forn.php" method="POST">
+					<table class="table_art_ins">
+						<tbody>
+							<tr>
+								<th scope="col">Nome</th>
+								<td><input type="text" name="nome"></td>
+							</tr>
+							<tr>
+								<th scope="col">Cognome</th>
+								<td><input type="text" name="cognome"></td>
+							</tr>
+							<tr>
+								<th scope="col">Telefono</th>
+								<td><input type="text" name="tel"></td>
+							</tr>
+							<tr>
+								<th scope="col">E-mail</th>
+								<td><input type="text" name="email"></td>
+							</tr>
+							<tr>
+								<th scope="col">Distributore</th>
+								<td><select name="distr">
+										<?php while($p = mysqli_fetch_assoc($distrResult)) {echo "<option value='".$p['id']."'>".$p['nome_distr']."</option>";} ?>
+									</select>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<input class="inpConf" type="submit" value="Conferma">					
+				</form>
+			</span>
+		
+	</div>	
+<?php include("footer.php"); ?>

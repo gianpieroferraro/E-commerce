@@ -1,0 +1,38 @@
+	<header class="header">
+		<a class="logo" href="/shop/front_index.php" rel="nofollow"><img src="site_imgs/logo_foferys.png"><b>Foferys</b></a>
+		
+		<input class="menu_btn" id="menu_btn" type="checkbox">
+			<label for="menu_btn" class="menu_icon">
+				<div id="log_menu">
+					<a class="active" href="/shop/front_index.php"><b>Home</b></a>
+					<a href="log_in.php"><b>Login</b></a>
+					<div style="position: relative;">
+						<a href="#"><i class="uil uil-shopping-bag basket"></i></a>
+					</div>
+					<span class="nav_icon"></span>
+				</div>
+			</label>
+		
+		<ul class="menu">
+			<div id="mainSearch">
+				<span><a href="/shop/admin/user_profile.php">Il tuo profilo</a></span>
+			
+				<form action="front_index.php" method="post">
+					<input class="mainSearch" name="search" type="text"> <!--RICERCA-->
+					<button class="mainCerca" type="submit">
+						<i class="uil uil-search-alt"></i>
+					</button>
+				</form>	
+			</div>
+		
+			<li><a href="/shop/maglieria.php" >Maglieria</a></li>
+			<li><a href="" >Camicie</a></li>
+			<li><a href="" >Pantaloni</a></li>
+			<li><a href="" >Jeans</a></li>
+			<li><a href="" >Costumi</a></li>
+			<li><a href="/shop/scarpe.php" >Scarpe</a></li>
+			
+			
+		</ul>
+	</header>
+	

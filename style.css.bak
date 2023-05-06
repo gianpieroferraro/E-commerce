@@ -1,0 +1,683 @@
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100%;
+    
+	box-sizing: border-box;
+}
+
+.coloreBase {
+	background: #247e8c;
+}
+
+.header {
+	top: 0;
+	box-shadow: 1px 1px 4px 0 rgba(0,0,0, .1);
+	background-color: #f7f2c9f7;
+	position: fixed;
+	width: 100%;
+	z-index: 999999;
+}
+
+.header ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	overflow: hidden;
+	
+}
+
+.header ul a {
+	display: block;
+	padding: 20px;
+	text-decoration: none;
+	color: #fff;
+}
+
+header ul a:hover {
+	background-color: #fff;
+	color: #247e8c; 
+	
+}
+
+.header .logo {
+	float: left;
+	font-size: 25px;
+	padding: 10px 20px;
+}
+
+.header .menu {
+	clear: both;
+	max-height: 0;
+	transition: max-height .2s ease-out;
+}
+
+.header .menu_icon {
+	padding: 28px;
+	position: relative;
+	float: right;
+	cursor: pointer;
+}
+
+.header .menu_icon .nav_icon {
+	background-color:  #0a4440 ;
+	display: block;
+	width: 18px;
+	top: 7px;
+	height: 2px;
+	position: relative;
+	transition: background-color .2s ease-out;
+}
+/**/
+
+#log_menu {
+	display: flex;
+    gap: 30px;
+}
+
+#log_menu a{
+	color: #fff;
+	text-decoration: none;
+	position: relative;
+}
+
+#log_menu a:hover,
+.basket:hover {
+	color: #fff38f;
+	transition: 0.3s ease;
+}
+
+#log_menu a:hover::after {
+	content: "";
+	width: 40%;
+	height: 2px;
+	background: #fff;
+	position: absolute;
+	bottom: -4px;
+	left: 1px;
+}
+
+.active {
+	display: none;
+}
+
+.basket {
+	color: #fff; 
+    position: absolute;
+    font-size: 30px;
+    top: -11px;
+    left: -13px;
+}
+/**/
+.header .menu_icon .nav_icon::before,
+.header .menu_icon .nav_icon::after {
+	background-color:  #0a4440 ;
+	content: "";
+	display: block;
+	height: 100%;
+	width: 100%;
+	transition: all .2s ease-out;
+	position: absolute;
+}
+
+.header .menu_icon .nav_icon::before {
+	top: 5px;
+}
+
+.header .menu_icon .nav_icon::after {
+	top: -5px;
+}
+
+.header .menu_btn {
+	display: none;
+}
+
+.header .menu_btn:checked ~ .menu {
+	max-height: 240px;
+}
+
+.header .menu_btn:checked ~ .menu_icon .nav_icon {
+	background-color: transparent;
+}
+
+.header .menu_btn:checked ~ .menu_icon .nav_icon::before {
+	transform: rotate(-45deg);
+	top: 0;
+}
+
+.header .menu_btn:checked ~ .menu_icon .nav_icon::after {
+	transform: rotate(45deg);
+	top: 0;
+}
+
+#mainSearch {
+	display: flex;
+    justify-content: right;
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    text-align: right;
+}
+#mainSearch span a {
+	border: 1px solid black;
+    color: #0a4440;
+    padding: 10px;
+    font-weight: 600;
+    margin-right: 20px;
+}
+#mainSearch span a:hover {
+	color: #c38080;
+	transition: 0.3s ease;
+	background-color: transparent;
+}
+
+#mainSearch form {
+	margin-right: 30px;
+}
+
+.mainInputSearch{
+	width: 90%;
+}
+.mainCerca {
+	position: absolute;
+    right: 57px;
+    background-color: transparent;
+    color: #0a4440;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.logo {
+	color: #fff;
+	text-decoration: none;
+}
+.logo b {
+	font-size: 18px;
+	position: absolute;
+	color: #0a4440;
+    top: 19px;
+    left: 68px;
+}
+
+.logo img {
+	height: 33px;
+}
+
+#hero {
+	background-image: url("images/models.JPG");
+	height: 440px;
+	background-size: cover;
+	background-position: top 2% right 0;
+	padding: 70px 150px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+} 
+#hero h4, h2, h1, p {
+	margin: 0;
+	padding-bottom: 15px;
+	
+}
+#hero h1 {
+	color: #088178; 
+}
+#hero button, #hero_shoe button, #hero_maglieria button {
+	height: 50px;
+    width: 250px;
+    font-size: larger;
+    font-weight: 600;
+	background-color: transparent;
+	border: 1px solid #f7f2c9f7;
+    color: #000;
+    cursor: pointer;
+}
+#hero button {
+	border-color: #000;
+}
+#hero button:hover,
+#hero_shoe button:hover {
+	background-color: #f7f2c9f7;
+	border-color: #000;
+	color: #b56161;
+	font-size: 20px;
+	transition: 0.3s ease;
+}
+.sectionP1 {
+	padding: 40px 0;
+}
+#feature {
+	display: flex;
+	align-items: center; 
+	justify-content: space-around;
+	flex-wrap: wrap;
+	padding: 40px 20px;
+}
+#feature .imgContainer {
+	position: relative;
+    width: 200px;
+    margin: 10px 50px;
+    height: 246px;
+    overflow: hidden;
+    cursor: pointer;
+}
+#feature .imgContainer:hover {
+	border: 3px solid #0a4440;
+}
+
+.imgContainer img{
+	max-width: 100%;
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+	margin-bottom:x;
+}
+
+.imgContainer h2 {
+	position: absolute;
+    top: 192px;
+    font-size: 25px;
+    text-align: center;
+    background: #f1f1f1cc;
+    bottom: 0;
+    width: 100%;
+    color: #0a4440;
+	padding-top: 10px; 
+}
+/*scarpe
+
+#hero_shoe {
+	background-image: url("images/heroman.JPG");
+	height: 440px;
+	background-size: cover;
+	background-position: top 2% right 0;
+	padding: 70px 150px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	color: #fff;
+	margin: 0;
+	padding-bottom: 15px;
+}
+*/
+#shoeHead {
+	padding: 95px 85px 0;
+}
+
+#shoeHead h1 {
+	margin-top: 20px;
+}
+
+.shoeSearch, .mainSearch {
+    margin-bottom: 6px;
+    font-size: 18px;
+    border: none;
+    border-bottom: 2px solid #0a4440;
+    color: #000;
+    padding: 8px;
+	margin-right: 22px;
+}
+.mainSearch {
+	text-align: right;
+}
+.distrSel {
+	position: relative;
+}
+.shoeCerca {
+	position: absolute;
+    left: 271px;
+    background-color: transparent;
+    color: #0a4440;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+.imgShoeContainer {
+	position: relative;
+    width: 285px;
+    cursor: pointer;
+    overflow: hidden;
+}
+.imgShoeContainer img{
+	max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    width: 100%;
+    height: 284px;
+}
+.imgShoeContainer:hover {
+	text-align: center;
+    border: 1px solid #000000;
+	cursor: pointer;
+}
+.imgShoeContainer h4 {
+	font-weight: 300;
+    text-align: left;
+    margin: 10px 0 20px 10px;
+}
+.imgShoeContainer h5 {
+	font-weight: 300;
+    color: grey;
+    text-align: left;
+    margin: -13px 0 20px 10px;
+}
+.shoePrice {
+	position: absolute;
+    top: 258px;
+    padding: 5px;
+    width: 50px;
+    left: 11px;
+    background: #fff;
+}
+
+.shoePrice b {
+	font-weight: lighter;
+}
+/* maglieria*/
+
+#hero_maglieria button {
+	border-color: #000;
+}
+
+
+
+
+
+
+#grid_right_insart {
+	width: 100%; 
+}
+
+.inserInput {
+	margin-bottom: 6px;
+    font-size: 18px;
+    width: 140px;
+    border-radius: 7px;
+	color: #000;
+	border: solid 3px #247e8c;
+	padding: 8px;
+}
+
+.inpCerca{
+	background-color: #247e8c; 
+	margin-bottom: 6px;
+    border-radius: 7px;
+	color: #fff;
+	border: none;
+	padding: 8px;
+	font-size: 20px;
+	width: 100px;
+	height: 43px;
+	cursor: pointer;	
+}
+
+.hidden {
+	display: none;
+}
+
+.container {
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 75px auto;
+}
+
+.cont {
+	padding: 100px 30px 30px;
+    grid-column: 1/4;
+	grid-row: 2/3;
+    display: flex;
+    justify-content: center;
+	align-items: center;
+}
+
+
+.containForm {
+	position: relative;
+	max-width: 430px;
+	width: 100%;
+	background: #fff;
+	border: solid 3px #247e8c;
+	border-radius: 30px;
+}
+
+.containForm .form {
+	padding: 30px;
+	
+}
+
+.containForm .form .title {
+	position: relative;
+	font-size: 27px;
+	font-weight: 600;
+}
+
+.input-field {
+	position: relative;
+	margin-top: 30px; 
+	height: 50px;
+	width: 100%;
+}
+
+.input-field input {
+	position: absolute;
+	height: 100%;
+	width: 80%;
+	padding: 0 35px;
+	border: none;
+	outline: none;
+	font-size: 16px;
+	border-bottom: 2px solid #ccc;
+	border-top: 2px solid transparent;
+	transition: all 0.2s ease;
+}
+
+.input-field input:is(:focus, :valid) {
+	border-bottom-color: #247e8c;
+}
+
+.input-field i {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #999;
+	font-size: 23px;
+}
+
+.input-field input:is(:focus, :valid) ~ i {
+	color: #247e8c;
+}
+
+.input-field i.icon {
+	left: 0;
+}
+
+.input-field i.showHidePw {
+	right: 0;
+	cursor: pointer;
+	padding: 10px;
+}
+
+#reg_form .checkbox_text {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;	
+	margin-top: 20px;
+}
+
+.checkbox_text .checkbox_content {
+	display: flex;
+	align-items: center;
+}
+
+.checkbox_text input {
+	margin: 0 8px 2px 0;
+	accent-color: #247e8c;
+}
+
+#reg_form .text {
+	color: #333;
+	font-size:14px;
+}
+
+#reg_form a.text {
+	color: #247e8c;
+	text-decoration: none; 
+	font-weight: 600;
+}
+
+#reg_form a:hover {
+	text-decoration: underline; 
+}
+
+#reg_form .button {
+	width: 460px; 
+	margin-bottom: 10px;
+}
+
+#reg_form .button input {
+	border: none; 
+	color: #fff;
+	font-size: 17px;
+	font-weight: 600;
+	letter-spacing: 1px;
+	border-radius: 30px;
+	background-color: #247e8c;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.login_signup {
+	margin-top: 20px;
+	text-align: center; 
+}
+
+.login_signup a{
+	color: #247e8c; 
+}
+
+
+/*
+.footer {	
+	margin-top: auto;
+    width: 100%;
+    grid-column: 1 / 4;
+	grid-row: 3/3;
+}
+.footer p {
+	padding: 5px 0;
+    margin-left: 55px;
+    font-weight: lighter;
+    color: #fff;
+}
+
+.form_succes {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    color: green;
+}
+*/
+
+
+@media (min-width: 48em) {
+	
+	.header ul a:hover {
+		background-color: #247e8c;
+		color: #fff;
+	}
+	
+	.header li {
+		float: right;
+	}
+	
+	.header li a {
+		padding: 20px 30px;
+		color: #247e8c; 
+	}
+	
+	.header .menu {
+		background: #ffffffe0;
+		
+	}
+	
+	#log_menu {
+	display: flex;
+    gap: 30px;
+	}
+
+	#log_menu a{
+		display: flex;
+		color:  #0a4440;
+		text-decoration: none;
+		position: relative;
+	}
+
+	#log_menu a:hover,
+	.basket:hover,
+	#log_menu a.active {
+		color: #c38080;
+		transition: 0.3s ease;
+	}
+
+	#log_menu a.active::after,
+	#log_menu a:hover::after {
+		content: "";
+		width: 40%;
+		height: 2px;
+		background: #c38080;
+		position: absolute;
+		bottom: -4px;
+		left: 1px;
+	}
+
+	.basket {
+		color:  #0a4440 ; 
+		position: absolute;
+		font-size: 30px;
+		top: -11px;
+		left: -13px;
+	}
+	
+	
+	
+	#smallimgcontainer {
+	padding: 30px 0 0 0;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 35px;
+	}
+	.smallimg {
+		position: relative;
+		width: 200px;
+		height: 280px;
+		border-radius: 20px;
+		overflow: hidden;
+		cursor: pointer;
+		
+	}
+	.smallimg img{
+		max-width: 100%;
+		object-fit: cover;
+		height: 100%;
+		width: 100%;
+		margin-bottom:x;
+	}
+
+	.smallimg h2 {
+		position: absolute;
+		background: #ffffffcc;
+		z-index: 99999;
+		width: 170px;
+		bottom: -20px;
+		padding: 17px;
+	}
+		
+}
+
