@@ -12,6 +12,9 @@ Questa web app è stata sviluppata con l'obiettivo di fornire una simulazione di
 
 
 ![Home front del progetto](images/screen/1.png)
+![sezione Scarpe](images/screen/2.png)
+![dettaglio scarpa](images/screen/3.png)
+![Back-end gestione articoli](images/screen/4.png)
 
 ## Funzionalità
 
