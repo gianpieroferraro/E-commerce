@@ -1,3 +1,7 @@
+# ELENCO 
+## Descrizione
+## Funzionalità
+
 # E-commerce Web App 
 
 Questo progetto è una web app che simula un e-commerce front-end e back-end, programmato in PHP(ancora in aggiornamento).
